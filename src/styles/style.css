@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    border: 1px solid black;
+    padding: 1em;
+}
+
+.row {
+    display: flex;
+    gap: 1em;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.line {
+    
+}
+
+.cell {
+    border: 1px solid black;
+    height: 5em;
+    width: 5em;
+}
+.cell:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
