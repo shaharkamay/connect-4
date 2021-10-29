@@ -12,7 +12,7 @@ class View {
         this.cells = [];
         for (let i = 0; i < 49; i++) {
             this.cells.push(this.createElement('div', [i + 1], ['cell'], {id: i + 1}, {click: (e) => {
-                e.target.textContent = "clicked";
+                this.playEvent.trigger(i + 1);
             }}));
             if(i % 7 === 0) {
                 lineDiv = this.createElement('div', [], ['line', 'row']);
@@ -22,19 +22,22 @@ class View {
         }
         const main = this.createElement('main', [board]);
         document.body.append(main);
+
+        this.message = this.createElement('div', [], ['message']);
         document.body.append(this.message);
     }
 
-    updateCell(cellId, player) {
-        this.cells[cellId].textContent = player;
+    updateCell(data) {
+        this.cells[data.cellId - 1].textContent = data.player;
     }
 
     victory(winner) {
-        this.message.innerHTML = `${winner} wins!`;
+        console.log(`${winner} wins!`);
+        this.message.textContent = `${winner} wins!`;
     }
 
     draw() {
-        this.message.innerHTML = "It's a draw!";
+        this.message.textContent = "It's a draw!";
     }
 
     createElement(tagName, children = [], classes = [], attributes = {}, eventListeners = {}) {
