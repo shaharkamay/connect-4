@@ -11,8 +11,8 @@ class View {
         let lineDiv = this.createElement('div', [], ['line', 'row']);
         this.cells = [];
         for (let i = 0; i < 49; i++) {
-            this.cells.push(this.createElement('div', [i + 1], ['cell'], {id: i + 1}, {click: (e) => {
-                this.playEvent.trigger(i + 1);
+            this.cells.push(this.createElement('div', [i], ['cell'], {id: i}, {click: (e) => {
+                this.playEvent.trigger(i);
             }}));
             if(i % 7 === 0) {
                 lineDiv = this.createElement('div', [], ['line', 'row']);
@@ -28,7 +28,7 @@ class View {
     }
 
     updateCell(data) {
-        this.cells[data.cellId - 1].textContent = data.player;
+        this.cells[data.cellId].textContent = data.player;
     }
 
     victory(winner) {

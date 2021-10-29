@@ -13,7 +13,7 @@ class Model {
     }
 
     play(cellId) {
-        this.cells[cellId - 1] = this.currentPlayer;
+        this.cells[cellId] = this.currentPlayer;
         this.updateCellEvent.trigger({cellId, player: this.currentPlayer})
         
         // this.finished = this.victory() || this.draw();
@@ -44,7 +44,7 @@ class Model {
         for (let i = 0; i < this.cells.length; i += 7) {
             let count = 1;
             for (let j = i; j < i + 7; j++) {
-                if (this.cells[j] && this.cells[j] === this.cells[j + 1]) count++;
+                if (this.cells[j] && this.cells[j] === this.cells[j + 1]) console.log(count++);
                 else count = 1;
 
                 if(count === 4) {
@@ -55,10 +55,9 @@ class Model {
         }
 
         //columns check
-        for (let i = 1; i <= 7; i++) {
+        for (let i = 0; i < 7; i++) {
             let count = 1;
             for (let j = i ; j <= this.cells.length; j += 7) {
-                // console.log(j)
                 if(this.cells[j] && this.cells[j] === this.cells[j + 7]) count++;
                 else count = 1;
 
@@ -69,8 +68,63 @@ class Model {
             }
         }
 
-        //diagonals check
-        
+        //top-left-right diagonals check
+        for (let i = 0; i < 7; i++) {
+            let count = 1;
+            for (let j = i; j <= this.cells.length - (i * 7); j += 8) {
+                if(this.cells[j] && this.cells[j] === this.cells[j + 8]) count ++;
+                else count = 1;
+
+                if(count === 4) {
+                    this.victoryEvent.trigger(this.currentPlayer);
+                    return true;
+                }
+            }
+        }
+
+        //top-left-bottom diagonal check
+        for (let i = 7; i < this.cells.length; i += 7) {
+            let count = 1;
+            for (let j = i; j < this.cells.length; j += 8) {
+                if(this.cells[j] && this.cells[j] === this.cells[j + 8]) count++;
+                else count = 1;
+
+                if(count === 4) {
+                    this.victoryEvent.trigger(this.currentPlayer);
+                    return true;
+                }
+            }
+            
+        }
+
+        //top-right-left diagonal check
+        for (let i = 6; i >= 0; i--) {
+            let count = 1;
+            for (let j = i; j <= this.cells.length - ((7 - i) * 7); j += 6) {
+                if(this.cells[j] && this.cells[j] === this.cells[j + 6]) count++;
+                else count = 1;
+
+                if(count === 4) {
+                    this.victoryEvent.trigger(this.currentPlayer);
+                    return true;
+                }
+            }
+        }
+
+        //top-right-bottom diagonal check
+        for (let i = 13; i < this.cells.length; i += 7) {
+            let count = 1;
+            for (let j = i; j < this.cells.length; j += 6) {
+                if(this.cells[j] && this.cells[j] === this.cells[j + 6]) count++;
+                else count = 1;
+
+                if(count === 4) {
+                    this.victoryEvent.trigger(this.currentPlayer);
+                    return true;
+                }
+            }
+            
+        }
         
         return false;
     }
