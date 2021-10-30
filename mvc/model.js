@@ -4,7 +4,7 @@ import { Event } from '../scripts/event.js';
 class Model {
     constructor() {
         this.cells = Array(49).fill("");
-        this.currentPlayer = 'blue';
+        this.currentPlayer = 'yellow';
         this.finished = false;
 
         this.updateCellEvent = new Event();
@@ -16,8 +16,6 @@ class Model {
         this.cells[cellId] = this.currentPlayer;
         this.updateCellEvent.trigger({cellId, player: this.currentPlayer})
         
-        // this.finished = this.victory() || this.draw();
-        console.log(this.draw());
         this.finished = this.victory() || this.draw();
 
         if(!this.finished) {
@@ -25,19 +23,6 @@ class Model {
         }
         return true;
     }
-
-    // play(move) {
-    //     if (this.finished || move < 0 || move > 8 || this.board[move]) { return false; }
-
-    //     this.board[move] = this.currentPlayer;
-    //     this.updateCellEvent.trigger({ move, player: this.currentPlayer });
-
-    //     this.finished = this.victory() || this.draw();
-
-    //     if (!this.finished) { this.switchPlayer(); }
-
-    //     return true;
-    // }
 
     victory() {
         //lines check
@@ -148,6 +133,6 @@ class Model {
     }
 
     switchPlayer() {
-        this.currentPlayer = this.currentPlayer === 'blue' ? 'red' : 'blue';
+        this.currentPlayer = this.currentPlayer === 'yellow' ? 'red' : 'yellow';
     }
 }

@@ -1,10 +1,15 @@
 body {
     margin: 0;
     padding: 0;
+    height: 90vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
 }
 
 main {
-    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +18,7 @@ main {
 .board {
     border: 1px solid black;
     padding: 1em;
+    background-color: blue;
 }
 
 .row {
@@ -26,16 +32,32 @@ main {
     gap: 1em;
 }
 
-.line {
-    
-}
 
 .cell {
     border: 1px solid black;
     height: 5em;
     width: 5em;
+    border-radius: 100px;
+    background-color: white;
 }
 .cell:hover {
     background-color: lightblue;
     cursor: pointer;
+}
+
+.yellow,
+.yellow:hover {
+    background-color: yellow;
+    transition: all .3s;
+}
+
+.red,
+.red:hover {
+    background-color: red;
+    transition: all .3s;
+}
+
+.message {
+    text-align: center;
+    font-size: 3rem;
 }
