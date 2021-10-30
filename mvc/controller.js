@@ -9,9 +9,9 @@ class Controller {
 
         
         this.view.playEvent.addListener(cellId => { 
-            this.model.play(cellId);
-            const color = this.view.cells[cellId].dataset.color;
-            this.view.cells[cellId].classList.add(color);
+            const newCellId = this.model.play(cellId);
+            const color = this.view.cells[newCellId].dataset.color;
+            this.view.cells[newCellId].classList.add(color);
         });
 
         this.model.updateCellEvent.addListener(data => { this.view.updateCell(data); });

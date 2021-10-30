@@ -13,6 +13,14 @@ class Model {
     }
 
     play(cellId) {
+        const column = cellId % 7; //0 - 6
+        for (let i = this.cells.length - (7 - column); i >= 0; i -= 7) {
+            if(!this.cells[i] && !this.cells[i - 7]) {
+                cellId = i;
+                break;
+            } 
+        }
+        console.log(cellId);
         this.cells[cellId] = this.currentPlayer;
         this.updateCellEvent.trigger({cellId, player: this.currentPlayer})
         
@@ -21,7 +29,7 @@ class Model {
         if(!this.finished) {
             this.switchPlayer();
         }
-        return true;
+        return cellId;
     }
 
     victory() {
