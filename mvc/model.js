@@ -20,7 +20,6 @@ class Model {
                 break;
             } 
         }
-        console.log(cellId);
         this.cells[cellId] = this.currentPlayer;
         this.updateCellEvent.trigger({cellId, player: this.currentPlayer})
         
